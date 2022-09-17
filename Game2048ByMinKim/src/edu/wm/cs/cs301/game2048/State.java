@@ -122,18 +122,26 @@ public class State implements GameState {
 	public int left() {
 		// TODO Auto-generated method stub
 		int sum = 0;
-		for(int i=0; i<4; i++) {
-			for(int j=0; j<3; j++){
+		for(int j=0; j<4; j++) {
+			for(int i=0; i<3; i++){
 				if(getValue(i, j)!=0) {
-					if(getValue(i, j) == getValue(i, j+1)){
-						sum += getValue(i, j)+getValue(i, j+1);
-						tile[i][j] += tile[i][j+1];
-						tile[i][j+1]=0;
+					for(int k=i+1; k<4; k++) {
+						if(getValue(i, j) == getValue(k, j)){
+							sum += getValue(i, j)+getValue(k, j);
+							tile[i][j] += tile[k][j];
+							tile[k][j]=0;
+							break;
+						}
 					}
 				}else {
-					int x = getValue(i, j+1);
-					tile[i][j+1]= getValue(i, j);
-					tile[i][j]=x;
+					for(int k=i+1; k<4; k++) {
+						if(getValue(k, j)!= 0) {
+							int x = getValue(k, j);
+							tile[k][j]= getValue(i, j);
+							tile[i][j]=x;
+							break;
+						}
+					}
 				}
 			}
 		}
@@ -145,11 +153,25 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		int sum = 0;
 		for(int i=0; i<4; i++) {
-			for(int j=4; j>1; j--){
-				if(tile[i][j] == tile[i][j-1]){
-					sum += tile[i][j]+tile[i][j-1];
-					tile[i][j] = tile[i][j]+tile[i][j-1];
-					tile[i][0] = 0;
+			for(int j=3; j>0; j--){
+				if(getValue(i, j)!=0) {
+					for(int k=j-1; k>=0; k--) {
+						if(getValue(i, j) == getValue(i, k)){
+							sum += getValue(i, j)+getValue(i, k);
+							tile[i][j] += tile[i][k];
+							tile[i][k]=0;
+							break;
+						}
+					}
+				}else {
+					for(int k=j-1; k>=0; k--) {
+						if(getValue(i, k)!= 0) {
+							int x = getValue(i, k);
+							tile[i][k]= getValue(i, j);
+							tile[i][j]=x;
+							break;
+						}
+					}
 				}
 			}
 		}
