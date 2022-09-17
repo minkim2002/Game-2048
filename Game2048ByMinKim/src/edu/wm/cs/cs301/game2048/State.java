@@ -176,12 +176,26 @@ public class State implements GameState {
 	public int up() {
 		// TODO Auto-generated method stub
 		int sum = 0;
-		for(int i=0; i<3; i++) {
-			for(int j=0; j<4; j++){
-				if(tile[i][j] == tile[i+1][j]){
-					sum += tile[i][j]+tile[i+1][j];
-					tile[i][j] = tile[i][j]+tile[i+1][j];
-					tile[3][j] = 0;
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<3; j++){
+				if(getValue(i, j)!=0) {
+					for(int k=j+1; k<4; k++) {
+						if(getValue(i, j) == getValue(i, k)){
+							sum += getValue(i, j)+getValue(i, k);
+							tile[i][j] += tile[i][k];
+							tile[i][k]=0;
+							break;
+						}
+					}
+				}else {
+					for(int k=j+1; k<4; k++) {
+						if(getValue(i, k)!= 0) {
+							int x = getValue(i, k);
+							tile[i][k]= getValue(i, j);
+							tile[i][j]=x;
+							break;
+						}
+					}
 				}
 			}
 		}
