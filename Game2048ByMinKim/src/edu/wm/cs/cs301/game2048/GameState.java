@@ -1,5 +1,6 @@
 package edu.wm.cs.cs301.game2048;
 
+
 public interface GameState {
 
 	///// Methods to get/set the values on the board
