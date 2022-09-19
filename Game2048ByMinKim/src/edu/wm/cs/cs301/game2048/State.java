@@ -73,20 +73,23 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		if(!isFull() && canMerge()) {
 			Random rand = new Random();
-			// Generate random integers in range 0 to 3
+			// Generate random integers in range 0 to 3 for finding a grid
 			int rand_int1=0;
 			int rand_int2=0;
 			do{
+				//repeat until it finds an empty grid
 				rand_int1 = rand.nextInt(4);
 				rand_int2 = rand.nextInt(4);
 			} while (tile[rand_int1][rand_int2]!=0);
 	        
-	        // Generate random integers in range 0 to 1
+	        // Generate random integers in range 0 to 1 for picking either 2 or 4
 	        int rand_int3 = rand.nextInt(2);
 	        if(rand_int3==0) {
+	        	//if 0, new tile will be 2;
 	        	tile[rand_int1][rand_int2] = 2;
 	        	return true;
 	        }else{
+	        	//if 1, new tile will be 4;
 	        	tile[rand_int1][rand_int2] = 2;
 	        	return true;
 	        }
@@ -112,15 +115,19 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++){
+				//checking left
 				if(i!=0 && (this.getValue(i-1, j)==this.getValue(i, j))){
 					return true;
 				}
+				//checking right
 				if(i!=3 && (this.getValue(i+1, j)==this.getValue(i, j))){
 					return true;
 				}
+				//checking up
 				if(j!=0 && (this.getValue(i, j-1)==this.getValue(i, j))){
 					return true;
 				}
+				//checking down
 				if(j!=3 && (this.getValue(i, j+1)==this.getValue(i, j))){
 					return true;
 				}
