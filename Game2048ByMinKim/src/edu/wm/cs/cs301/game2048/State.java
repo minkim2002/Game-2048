@@ -8,8 +8,10 @@ import com.sun.source.tree.WhileLoopTree;
 
 public class State implements GameState {
 	
-	int [][] tile = new int [4][4];
-
+	//field
+	int [][] tile = new int [4][4]; 
+	
+	//constructor with a parem
 	public State(GameState original) {
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++){
@@ -17,12 +19,12 @@ public class State implements GameState {
 			}
 		}
 	}
-
+	
+	//constructor with no parem
 	public State() {
 		setEmptyBoard();
 	}
 	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
