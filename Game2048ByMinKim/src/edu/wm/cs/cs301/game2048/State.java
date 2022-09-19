@@ -115,19 +115,19 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++){
-				//checking left
+				//checking up
 				if(i!=0 && (this.getValue(i-1, j)==this.getValue(i, j))){
 					return true;
 				}
-				//checking right
+				//checking down
 				if(i!=3 && (this.getValue(i+1, j)==this.getValue(i, j))){
 					return true;
 				}
-				//checking up
+				//checking left
 				if(j!=0 && (this.getValue(i, j-1)==this.getValue(i, j))){
 					return true;
 				}
-				//checking down
+				//checking right
 				if(j!=3 && (this.getValue(i, j+1)==this.getValue(i, j))){
 					return true;
 				}
@@ -154,6 +154,7 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		int sum = 0;
 		for(int i=0; i<4; i++) {
+			//first step: removing empty spaces in each row
 			for(int j=1; j<4; j++){
 				if(this.getValue(j, i)!=0) {
 					int move = j;
@@ -169,6 +170,7 @@ public class State implements GameState {
 					}
 				}
 			}
+			//second step: if there are two same numbers, merge, add scores
 			for (int m =1; m<4; m++) {
 				if ((tile[i][m-1] == tile[i][m] && tile[i][m]!=0 )) {
 					tile[i][m-1] *= 2;
@@ -176,6 +178,7 @@ public class State implements GameState {
 					sum += tile[i][m-1];
 				}
 			}
+			//last step: if there are empty spaces from merging, eliminate them
 			for (int e=1; e<4; e++) {
 				if(tile[i][e]>0) {
 					int move = e;
@@ -203,6 +206,7 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		int sum = 0;
 		for(int i=0; i<4; i++) {
+			//first step: removing empty spaces in each row
 			for(int j=2; j>=0; j--){
 				if(this.getValue(j, i)!=0) {
 					int move = j;
@@ -218,6 +222,7 @@ public class State implements GameState {
 					}
 				}
 			}
+			//second step: if there are two same numbers, merge, add scores
 			for (int m =2; m>=0; m--) {
 				if ((tile[i][m+1] == tile[i][m] && tile[i][m]!=0 )) {
 					tile[i][m+1] *= 2;
@@ -251,6 +256,7 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		int sum = 0;
 		for(int j=0; j<4; j++) {
+			//first step: removing empty spaces in each col
 			for(int i=2; i>=0; i--){
 				if(this.getValue(j, i)!=0) {
 					int move = i;
@@ -266,6 +272,7 @@ public class State implements GameState {
 					}
 				}
 			}
+			//second step: if there are two same numbers, merge, add scores
 			for (int m =2; m>=0; m--) {
 				if ((tile[m+1][j] == tile[m][j] && tile[m][j]!=0 )) {
 					tile[m+1][j] *= 2;
@@ -273,6 +280,7 @@ public class State implements GameState {
 					sum += tile[m+1][j];
 				}
 			}
+			//last step: if there are empty spaces from merging, eliminate them
 			for (int e=2; e>=0; e--) {
 				if(tile[e][j]>0) {
 					int move = e;
@@ -300,6 +308,7 @@ public class State implements GameState {
 		
 		int sum = 0;
 		for(int j=0; j<4; j++) {
+			//first step: removing empty spaces in each col
 			for(int i=1; i<4; i++){
 				if(this.getValue(j, i)!=0) {
 					int move = i;
@@ -315,6 +324,7 @@ public class State implements GameState {
 					}
 				}
 			}
+			//second step: if there are two same numbers, merge, add scores
 			for (int m =1; m<4; m++) {
 				if ((tile[m-1][j] == tile[m][j] && tile[m][j]!=0 )) {
 					tile[m-1][j] *= 2;
@@ -322,6 +332,7 @@ public class State implements GameState {
 					sum += tile[m-1][j];
 				}
 			}
+			//last step: if there are empty spaces from merging, eliminate them
 			for (int e=1; e<4; e++) {
 				if(tile[e][j]>0) {
 					int move = e;
