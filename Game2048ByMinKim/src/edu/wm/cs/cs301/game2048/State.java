@@ -115,7 +115,6 @@ public class State implements GameState {
 		// TODO Auto-generated method stub
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++){
-				//checking up
 				if(i!=0 && (this.getValue(i-1, j)==this.getValue(i, j))){
 					return true;
 				}
@@ -133,6 +132,7 @@ public class State implements GameState {
 				}
 			}
 		}
+				
 		return false;
 	}
 
