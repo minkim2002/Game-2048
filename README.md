@@ -1,3 +1,4 @@
 # Game2048ByMinKim
 
- This is a small Java project for students to implement a Java interface in a single class and get started with Junit testing.
+ CSCI 301 Software Development Project: 2048 Game
+ Clone the repository, then run the 'game2048' Java file
